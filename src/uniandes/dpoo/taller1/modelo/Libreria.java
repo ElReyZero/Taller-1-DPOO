@@ -265,7 +265,7 @@ public class Libreria
 
 		for (Categoria cat : categorias) {
 			for (Libro libro : cat.darLibros()) 
-			{ if(libro.darAutor() == cadenaAutor)
+			{ if(cadenaAutor.toLowerCase().contains(libro.darAutor().toLowerCase()))
 				librosAutor.add(libro);	
 			}
 		}
@@ -286,17 +286,22 @@ public class Libreria
 	public ArrayList<Categoria> buscarCategoriasAutor(String nombreAutor)
 	{
 		ArrayList<Categoria> resultado = new ArrayList<Categoria>();
-
+		
+		for (Categoria cat : categorias) {
+			for (Libro libro : cat.darLibros()) 
+			{ if(nombreAutor.toLowerCase().contains(libro.darAutor().toLowerCase()))
+				{
+				resultado.add(cat);	
+				break;
+			}	
+			}
+		}
+		return resultado;
 		/*
-		 * TODO Parte 2 - recorra el arreglo de categorias, haciendo un recorrido total.
 		 * En cada categoría, busque si en esa categoría hay libros que hayan sido
 		 * escritos por el autor indicado. Si es así, agregue la categoría a la lista de
 		 * categorías que se encuentra en la variable 'resultado'.
-		 * 
-		 * Para agregar un elemento a una lista puede utilizar el método add.
-		 */
-
-		return resultado;
+		 */ 		
 	}
 
 	/**
@@ -321,8 +326,26 @@ public class Libreria
 	 */
 	public Categoria categoriaConMasLibros()
 	{
-		// TODO Parte 2 - completar el método de acuerdo a la documentación
-		return null;
+		Categoria mejor = null;
+		Integer cantidad = 0;
+
+		for (Categoria cat : categorias) 
+		{	
+			Integer contador = cat.darLibros().size();
+			if(contador > cantidad)
+			{
+				mejor = cat;
+				cantidad = contador;
+			}
+		}
+		if (cantidad == 0)
+		{
+			return null;
+		}
+		else 
+		{
+			return mejor;
+		}
 	}
 
 	/**
@@ -333,8 +356,30 @@ public class Libreria
 	 */
 	public Categoria categoriaConMejoresLibros()
 	{
-		// TODO Parte 2 - completar el método de acuerdo a la documentación
-		return null;
+		Categoria mejor = null;
+		Double promedio = 0.0;
+		for (Categoria cat : categorias) 
+		{	
+			Double suma = 0.0;
+			for (Libro libro : cat.darLibros()) 
+			{
+				suma += libro.darCalificacion();
+			}
+			Double media = suma/cat.darLibros().size();
+			if(media>promedio)
+			{
+				mejor = cat;
+				promedio = media;
+			}
+		}
+		if (promedio == 0.0)
+		{
+			return null;
+		}
+		else 
+		{
+			return mejor;
+		}
 	}
 
 	/**
