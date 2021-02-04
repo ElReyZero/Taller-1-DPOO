@@ -165,9 +165,10 @@ public class Libreria
 			String archivoPortada = partes[4];
 			int ancho = Integer.parseInt(partes[5]);
 			int alto = Integer.parseInt(partes[6]);
+			Imagen laPortada = null;
 
 			// Crear un nuevo libro
-			Libro nuevo = new Libro(elTitulo, elAutor, laCalificacion, laCategoria);
+			Libro nuevo = new Libro(elTitulo, elAutor, laCalificacion, laCategoria, laPortada);
 			libros.add(nuevo);
 
 			// Si existe el archivo de la portada, ponérselo al libro
@@ -331,7 +332,7 @@ public class Libreria
 
 		for (Categoria cat : categorias) 
 		{	
-			Integer contador = cat.darLibros().size();
+			Integer contador = cat.contarLibrosEnCategoria();
 			if(contador > cantidad)
 			{
 				mejor = cat;
@@ -360,12 +361,7 @@ public class Libreria
 		Double promedio = 0.0;
 		for (Categoria cat : categorias) 
 		{	
-			Double suma = 0.0;
-			for (Libro libro : cat.darLibros()) 
-			{
-				suma += libro.darCalificacion();
-			}
-			Double media = suma/cat.darLibros().size();
+			double media = cat.calificacionPromedio();
 			if(media>promedio)
 			{
 				mejor = cat;

@@ -27,10 +27,9 @@ public class Categoria
 	 * Lista de libros que hacen parte de la categoría
 	 */
 	/*
-	 * TODO Parte 3 - agregar una asociación a la clase Libro llamada libros, que
-	 * sea una lista de Libro
+	 * 
 	 */
-
+	private ArrayList<Libro> libros;
 	// ************************************************************************
 	// Constructores
 	// ************************************************************************
@@ -39,11 +38,7 @@ public class Categoria
 	{
 		this.nombre = nombre;
 		this.ficcion = ficcion;
-		/*
-		 * TODO Parte 3 - inicializa la lista de libros con una lista vacía. Si esto no
-		 * se hace al construir la categoría, la lista de libros sería null y todas las
-		 * instrucciones para agregar libros fallarían.
-		 */
+		this.libros = new ArrayList<Libro>();
 	}
 
 	// ************************************************************************
@@ -78,8 +73,7 @@ public class Categoria
 	 */
 	public ArrayList<Libro> darLibros()
 	{
-		// TODO Parte 3 - completar el método de acuerdo a la documentación
-		return null;
+		return libros;
 	}
 
 	// ************************************************************************
@@ -93,7 +87,7 @@ public class Categoria
 	 */
 	public void agregarLibro(Libro nuevoLibro)
 	{
-		// TODO Parte 3 - completar el método de acuerdo a la documentación
+		libros.add(nuevoLibro);
 	}
 
 	/**
@@ -103,9 +97,9 @@ public class Categoria
 	 */
 	public int contarLibrosEnCategoria()
 	{
-		// TODO Parte 3 - completar el método de acuerdo a la documentación
-		// En este punto no debería tener que hacer ningún recorrido
-		return 0;
+		Integer cantidad = 0;
+		cantidad = libros.size();
+		return cantidad;
 	}
 
 	/**
@@ -115,9 +109,14 @@ public class Categoria
 	 */
 	public double calificacionPromedio()
 	{
-		// TODO Parte 3 - completar el método de acuerdo a la documentación
-		// En este punto tendrá que recorrer la lista de libros
-		return 0.0;
+		double Cal = 0.0;
+		for (Libro libro : libros) 
+		{
+			Cal += libro.darCalificacion();
+		}
+		int cantidad = contarLibrosEnCategoria();
+		double promedio = Cal/cantidad;
+		return promedio;
 	}
 
 	/**
@@ -133,7 +132,12 @@ public class Categoria
 	 */
 	public boolean hayLibroDeAutor(String nombreAutor)
 	{
-		// TODO Parte 3 - completar el método de acuerdo a la documentación
+		for (Libro libro : libros) 
+			{ if(nombreAutor.toLowerCase().contains(libro.darAutor().toLowerCase()))
+				{
+				return true;
+			}	
+			}
 		return false;
 	}
 
@@ -151,9 +155,13 @@ public class Categoria
 	 */
 	public ArrayList<Libro> buscarLibrosDeAutor(String nombreAutor)
 	{
-		// TODO Parte 3 - completar el método de acuerdo a la documentación
-		// Recuerde retornar una lista nueva (no la lista del atributo libros)
-		return null;
+		ArrayList<Libro> librosAutor = new ArrayList<Libro>();
+
+		for (Libro libro : libros) 
+			{ if(nombreAutor.toLowerCase().contains(libro.darAutor().toLowerCase()))
+				librosAutor.add(libro);	
+			}
+		return librosAutor;
 	}
 
 	// ************************************************************************
