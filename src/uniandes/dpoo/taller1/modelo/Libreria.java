@@ -23,18 +23,19 @@ public class Libreria
 	 * El arreglo con las categorías que hay en la librería
 	 */
 	/*
-	 * TODO Parte 2 - agregar una asociación a la clase Categoria llamada
+	 * 
+	 * agregar una asociación a la clase Categoria llamada
 	 * categorias, que sea un arreglo de Categoria
 	 */
-
+	private Categoria[] categorias;
 	/**
 	 * Una lista con los libros disponibles en la librería
 	 */
 	/*
-	 * TODO Parte 4 - agregar una asociación a la clase Libro llamada catalogos, que
+	 * agregar una asociación a la clase Libro llamada catalogos, que
 	 * sea una lista de libros
 	 */
-
+	private ArrayList<Libro> catalogo;
 	// ************************************************************************
 	// Constructores
 	// ************************************************************************
@@ -47,18 +48,20 @@ public class Libreria
 	 *                                información sobre las categorías de libros
 	 * @param nombreArchivoLibros     El nombre del archivo CSV que tiene la
 	 *                                información sobre los libros
+	 * @param categorias 			  Un arreglo con las categorías de libros
+	 * 
+	 * @param catalogo				 Un arreglo que es una lista de libros
+	 * 
 	 * @throws IOException Lanza esta excepción si hay algún problema leyendo un
 	 *                     archivo
+	 *
 	 */
 	public Libreria(String nombreArchivoCategorias, String nombreArchivoLibros) throws IOException
 	{
-		// this.categorias = cargarCategorias(nombreArchivoCategorias);
-		// TODO Parte 2 - después de crear el atributo categoria, quite el comentario
-		// sobre la línea anterior
+		this.categorias = cargarCategorias(nombreArchivoCategorias);
 
-		// this.catalogo = cargarCatalogo(nombreArchivoLibros);
-		// TODO Parte 4 - después de crear el atributo catalogo, quite el comentario
-		// sobre la línea anterior
+		this.catalogo = cargarCatalogo(nombreArchivoLibros);
+
 	}
 
 	// ************************************************************************
@@ -72,8 +75,7 @@ public class Libreria
 	 */
 	public Categoria[] darCategorias()
 	{
-		// TODO Parte 2 - completar el método de acuerdo a la documentación
-		return null;
+		return categorias;
 	}
 
 	/**
@@ -83,8 +85,7 @@ public class Libreria
 	 */
 	public ArrayList<Libro> darLibros()
 	{
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
-		return null;
+		return catalogo;
 	}
 
 	// ************************************************************************
@@ -192,9 +193,15 @@ public class Libreria
 	 */
 	private Categoria buscarCategoria(String nombreCategoria)
 	{
-		// TODO Parte 2 - completar el método de acuerdo a la documentación
+		for (Categoria cat : categorias)
+		{ if(cat.darNombre() == nombreCategoria)
+			{
+				return cat;
+			}	
+		}
 		return null;
 	}
+
 
 	/**
 	 * Verifica si existe el archivo con el nombre indicado dentro de la carpeta
@@ -220,16 +227,9 @@ public class Libreria
 	{
 		ArrayList<Libro> seleccionados = new ArrayList<Libro>();
 
-		/*
-		 * TODO Parte 2 - recorra el arreglo de categorias, haciendo un recorrido
-		 * parcial. Cuando encuentre la categoría con el nombre dado, agregue todos los
-		 * libros de esa categoría a la lista de libros que se encuentra en la variable
-		 * 'seleccionados'.
-		 * 
-		 * Para agregar muchos elementos a una lista con facilidad puede utilizar el
-		 * método addAll.
-		 */
+		Categoria cat = buscarCategoria(nombreCategoria);
 
+		seleccionados.addAll(cat.darLibros());
 		return seleccionados;
 	}
 
@@ -263,16 +263,12 @@ public class Libreria
 	{
 		ArrayList<Libro> librosAutor = new ArrayList<Libro>();
 
-		/*
-		 * TODO Parte 2 - recorra el arreglo de categorias, haciendo un recorrido total.
-		 * En cada categoría busque los libros que haya en esa categoría y que hayan
-		 * sido escritos por el autor indicado. Agregue esos libros a la lista de libros
-		 * que se encuentra en la variable 'librosAutor'.
-		 * 
-		 * Para agregar muchos elementos a una lista con facilidad puede utilizar el
-		 * método addAll.
-		 */
-
+		for (Categoria cat : categorias) {
+			for (Libro libro : cat.darLibros()) 
+			{ if(libro.darAutor() == cadenaAutor)
+				librosAutor.add(libro);	
+			}
+		}
 		return librosAutor;
 	}
 

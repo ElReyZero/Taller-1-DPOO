@@ -33,7 +33,7 @@ public class Libro
 	/**
 	 * Imagen con la portada del libro
 	 */
-	// TODO Parte 1 - agregar una asociación a la clase Imagen llamada portada
+	private Imagen portada;
 
 	// ************************************************************************
 	// Constructores
@@ -52,16 +52,18 @@ public class Libro
 	 * @param laCalificacion Calificación obtenida por el libro en
 	 *                       bookdepository.com
 	 * @param laCategoria    Categoría a la que pertenece el libro
+	 * @param laPortada		 Portada del libro
 	 */
-	public Libro(String elTitulo, String elAutor, double laCalificacion, Categoria laCategoria)
+	public Libro(String elTitulo, String elAutor, double laCalificacion, Categoria laCategoria, Imagen portada)
 	{
 		titulo = elTitulo;
 		autor = elAutor;
 		calificacion = laCalificacion;
 		categoria = laCategoria;
 		categoria.agregarLibro(this);
+		portada = null;
 
-		// TODO Parte 1 - Acá no hay nada que hacer con 'portada' porque, por defecto,
+		// Acá no hay nada que hacer con 'portada' porque, por defecto,
 		// un atributo tiene valor null
 	}
 
@@ -119,8 +121,15 @@ public class Libro
 	 */
 	public Imagen darPortada()
 	{
-		// TODO Parte 1 - completar el método de acuerdo a la documentación
+		if (portada == null)
+		{
 		return null;
+		}
+		else
+		{
+			return portada;
+		}
+
 	}
 
 	// ************************************************************************
@@ -134,7 +143,7 @@ public class Libro
 	 */
 	public void cambiarPortada(Imagen nuevaPortada)
 	{
-		// TODO Parte 1 - completar el método de acuerdo a la documentación
+		this.portada = nuevaPortada;
 	}
 
 	/**
@@ -145,8 +154,14 @@ public class Libro
 	 */
 	public boolean tienePortada()
 	{
-		// TODO Parte 1 - completar el método de acuerdo a la documentación
-		return false;
+		if (portada == null)
+		{
+			return false;	
+		}
+		else
+		{
+			return true;
+		}
 	}
 
 	@Override
