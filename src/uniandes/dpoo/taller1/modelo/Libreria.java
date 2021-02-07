@@ -6,6 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.graalvm.compiler.core.common.type.ArithmeticOpTable.UnaryOp.Not;
+
 /**
  * Esta clase agrupa toda la información de una librería: las categorías que se
  * usan para clasificar los libros, y del catálogo de libros.
@@ -243,6 +245,12 @@ public class Libreria
 	 */
 	public Libro buscarLibro(String tituloLibro)
 	{
+		for(Libro libro:catalogo)
+		{
+			if(libro.darTitulo()==tituloLibro)
+			break;
+		return libro;
+		}
 		// TODO Parte 4 - completar el método de acuerdo a la documentación
 		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
 		return null;
@@ -313,9 +321,16 @@ public class Libreria
 	 */
 	public double calificacionPromedio()
 	{
+		double promedio = 0.0;
+		double sumatoria =0;
+		for (Libro libro: catalogo)
+		{
+			sumatoria += libro.darCalificacion();
+		}
+		promedio = sumatoria/catalogo.size();
 		// TODO Parte 4 - completar el método de acuerdo a la documentación
 		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
-		return 0.0;
+		return promedio;
 	}
 
 	/**
@@ -385,9 +400,15 @@ public class Libreria
 	 */
 	public int contarLibrosSinPortada()
 	{
+		Integer num = 0;
+		for(Libro libro:catalogo)
+		{
+			if (!libro.tienePortada());
+			num ++;
+		}
 		// TODO Parte 4 - completar el método de acuerdo a la documentación
 		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
-		return 0;
+		return num;
 	}
 
 	/**
