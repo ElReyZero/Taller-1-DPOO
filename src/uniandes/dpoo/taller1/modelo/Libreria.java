@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.graalvm.compiler.core.common.type.ArithmeticOpTable.UnaryOp.Not;
 
 /**
  * Esta clase agrupa toda la información de una librería: las categorías que se
@@ -247,12 +246,9 @@ public class Libreria
 	{
 		for(Libro libro:catalogo)
 		{
-			if(libro.darTitulo()==tituloLibro)
-			break;
-		return libro;
+			if(libro.darTitulo().toLowerCase().contains(tituloLibro.toLowerCase()))
+			return libro;
 		}
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
-		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
 		return null;
 	}
 
@@ -328,8 +324,6 @@ public class Libreria
 			sumatoria += libro.darCalificacion();
 		}
 		promedio = sumatoria/catalogo.size();
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
-		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
 		return promedio;
 	}
 
@@ -406,8 +400,6 @@ public class Libreria
 			if (!libro.tienePortada());
 			num ++;
 		}
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
-		// Debe recorrer la lista de libros (no tiene sentido recorrer las categorias)
 		return num;
 	}
 
@@ -418,10 +410,17 @@ public class Libreria
 	 *         categorías diferentes. Retorna false en caso contrario.
 	 */
 	public boolean hayAutorEnVariasCategorias()
-	{
-		// TODO Parte 4 - completar el método de acuerdo a la documentación
-		// Implemente el método como considere conveniente (recorriendo primero las
-		// categorías o los libros)
+	{	
+		ArrayList<String> autores = new ArrayList<String>();
+
+		for (Libro libro : catalogo) 
+		{
+			String autor = libro.darAutor();
+			if(autores.contains(autor))
+				return true;
+			else
+				autores.add(autor);
+		}
 		return false;
 	}
 
