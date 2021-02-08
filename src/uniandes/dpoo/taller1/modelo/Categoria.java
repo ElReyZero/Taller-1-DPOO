@@ -133,7 +133,7 @@ public class Categoria
 	public boolean hayLibroDeAutor(String nombreAutor)
 	{
 		for (Libro libro : libros) 
-			{ if(nombreAutor.toLowerCase().contains(libro.darAutor().toLowerCase()))
+			{ if(libro.darAutor().toLowerCase().contains(nombreAutor.toLowerCase()))
 				{
 				return true;
 			}	
@@ -158,7 +158,7 @@ public class Categoria
 		ArrayList<Libro> librosAutor = new ArrayList<Libro>();
 
 		for (Libro libro : libros) 
-			{ if(nombreAutor.toLowerCase().contains(libro.darAutor().toLowerCase()))
+			{ if(libro.darAutor().toLowerCase().contains(nombreAutor.toLowerCase()))
 				librosAutor.add(libro);	
 			}
 		return librosAutor;

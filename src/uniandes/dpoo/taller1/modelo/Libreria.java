@@ -269,10 +269,14 @@ public class Libreria
 	{
 		ArrayList<Libro> librosAutor = new ArrayList<Libro>();
 
-		for (Categoria cat : categorias) {
+		for (Categoria cat : categorias) 
+		{
 			for (Libro libro : cat.darLibros()) 
-			{ if(cadenaAutor.toLowerCase().contains(libro.darAutor().toLowerCase()))
-				librosAutor.add(libro);	
+			{ 
+				if(libro.darAutor().toLowerCase().contains(cadenaAutor.toLowerCase()))
+				{
+					librosAutor.add(libro);
+				}
 			}
 		}
 		return librosAutor;
@@ -295,7 +299,7 @@ public class Libreria
 		
 		for (Categoria cat : categorias) {
 			for (Libro libro : cat.darLibros()) 
-			{ if(nombreAutor.toLowerCase().contains(libro.darAutor().toLowerCase()))
+			{ if(libro.darAutor().toLowerCase().contains(nombreAutor.toLowerCase()))
 				{
 				resultado.add(cat);	
 				break;

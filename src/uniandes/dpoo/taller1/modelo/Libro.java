@@ -121,7 +121,7 @@ public class Libro
 	{
 		if (portada == null)
 		{
-			Imagen missing = new Imagen("./data/imagenes/missing.png", 85, 85);
+			Imagen missing = new Imagen("./imagenes/missing.png", 85, 85);
 			return missing;
 		}
 		else
