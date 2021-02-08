@@ -196,10 +196,11 @@ public class Libreria
 	private Categoria buscarCategoria(String nombreCategoria)
 	{
 		for (Categoria cat : categorias)
-		{ if(cat.darNombre() == nombreCategoria)
+		{
+			if(cat.darNombre().contains(nombreCategoria))
 			{
 				return cat;
-			}	
+			}
 		}
 		return null;
 	}

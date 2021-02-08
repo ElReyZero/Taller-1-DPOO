@@ -63,8 +63,6 @@ public class Libro
 		categoria.agregarLibro(this);
 		portada = null;
 
-		// Acá no hay nada que hacer con 'portada' porque, por defecto,
-		// un atributo tiene valor null
 	}
 
 	// ************************************************************************
@@ -123,7 +121,7 @@ public class Libro
 	{
 		if (portada == null)
 		{
-		return null;
+			return null;
 		}
 		else
 		{
@@ -143,7 +141,7 @@ public class Libro
 	 */
 	public void cambiarPortada(Imagen nuevaPortada)
 	{
-		this.portada = nuevaPortada;
+		portada = nuevaPortada;
 	}
 
 	/**
